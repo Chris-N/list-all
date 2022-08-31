@@ -21,6 +21,12 @@ const Header = styled.div`
   border: 1px black solid;
 `;
 
+const Footer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 const MyList = styled(List)``;
 
 function App() {
@@ -33,9 +39,9 @@ function App() {
         </IconButton>
       </Header>
       <MyList>
-        {Data.map((value) => {
+        {Data.map((value, index) => {
           return (
-            <ListItemButton key={'listitem-' + value.name}>
+            <ListItemButton key={`listitem-${value.name}-${index}`}>
               <ListItemIcon>
                 <Checkbox edge='start' disableRipple />
               </ListItemIcon>
@@ -44,7 +50,11 @@ function App() {
           );
         })}
       </MyList>
-      <Button variant='contained'>Add Item</Button>
+      <Footer>
+        <Button variant='contained' onClick={() => alert('TODO: Add item screen')}>
+          Add Item
+        </Button>
+      </Footer>
     </Container>
   );
 }
