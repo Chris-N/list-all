@@ -9,7 +9,7 @@ import {
   ListItemText,
 } from '@mui/material';
 import styled from 'styled-components';
-import { Data } from './data/items';
+import { Data } from 'data/items';
 
 const Header = styled.div`
   display: flex;

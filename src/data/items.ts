@@ -1,9 +1,4 @@
-interface Item {
-  name: string;
-  category: string;
-  status: boolean;
-  createDatetime?: Date;
-}
+import { Item } from 'types/index';
 
 export const Data: Item[] = [
   {
