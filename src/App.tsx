@@ -1,4 +1,5 @@
 import * as React from 'react';
+import styled from 'styled-components';
 import {
   Button,
   Checkbox,
@@ -10,8 +11,10 @@ import {
   ListItemText,
 } from '@mui/material';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import styled from 'styled-components';
-import { Data } from 'data/items';
+
+import importedItems from 'data/items.json';
+
+import { Item } from 'types';
 
 const Header = styled.div`
   display: flex;
@@ -30,6 +33,17 @@ const Footer = styled.div`
 const MyList = styled(List)``;
 
 function App() {
+  const [items, setItems] = React.useState<Item[]>(importedItems.data);
+
+  const handleToggle = (index: number) => () => {
+    const changeItem: Item | undefined = items.at(index);
+
+    if (!changeItem) return;
+
+    items[index].status = !changeItem.status;
+    setItems([...items]);
+  };
+
   return (
     <Container id='app'>
       <Header>
@@ -39,11 +53,11 @@ function App() {
         </IconButton>
       </Header>
       <MyList>
-        {Data.map((value, index) => {
+        {items.map((value, index) => {
           return (
-            <ListItemButton key={`listitem-${value.name}-${index}`}>
+            <ListItemButton key={`listitem-${value.name}-${index}`} onClick={handleToggle(index)}>
               <ListItemIcon>
-                <Checkbox edge='start' disableRipple />
+                <Checkbox edge='start' checked={value.status} disableRipple />
               </ListItemIcon>
               <ListItemText primary={value.name} secondary={value.category} />
             </ListItemButton>
