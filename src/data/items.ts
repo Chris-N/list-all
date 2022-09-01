@@ -9,7 +9,7 @@ export const Data: Item[] = [
   {
     name: 'Bananas',
     category: 'Produce',
-    status: false,
+    status: true,
   },
   {
     name: 'Peaches',

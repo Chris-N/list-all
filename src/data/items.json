@@ -1,0 +1,7 @@
+{
+  "data": [
+    { "name": "Apples", "category": "Produce", "status": false },
+    { "name": "Bananas", "category": "Produce", "status": true },
+    { "name": "Peaches", "category": "Produce", "status": false }
+  ]
+}
