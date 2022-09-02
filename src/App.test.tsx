@@ -1,14 +1,5 @@
-import { render, screen } from '@testing-library/react';
-import App from './App';
+import '@testing-library/react';
 
-test('renders header', () => {
-  render(<App />);
-  const textElement = screen.getByText(/Stuff/i);
-  expect(textElement).toBeInTheDocument();
-});
+test.todo('full app rendering and check route to add screen');
 
-test('renders add button', () => {
-  render(<App />);
-  const textElement = screen.getByText(/add item/i);
-  expect(textElement).toBeInTheDocument();
-});
+test.todo('full app rendering and check route to catch all screen');
