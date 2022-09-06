@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import {
   Button,
@@ -34,6 +35,7 @@ const MyList = styled(List)``;
 
 export const Home: React.FC = () => {
   const [items, setItems] = React.useState<Item[]>(importedItems.data);
+  const navigate = useNavigate();
 
   const handleToggle = (index: number) => () => {
     const changeItem: Item | undefined = items.at(index);
@@ -55,7 +57,10 @@ export const Home: React.FC = () => {
       <MyList>
         {items.map((value, index) => {
           return (
-            <ListItemButton key={`listitem-${value.name}-${index}`} onClick={handleToggle(index)}>
+            <ListItemButton
+              key={`listitem-${value.name}-${index}`}
+              onClick={handleToggle(index)}
+            >
               <ListItemIcon>
                 <Checkbox edge='start' checked={value.status} disableRipple />
               </ListItemIcon>
@@ -65,7 +70,7 @@ export const Home: React.FC = () => {
         })}
       </MyList>
       <Footer>
-        <Button variant='contained' onClick={() => alert('TODO: Add item screen')}>
+        <Button variant='contained' onClick={() => navigate('/add')}>
           Add Item
         </Button>
       </Footer>
