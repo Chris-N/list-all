@@ -11,6 +11,12 @@ const Header = styled.div`
   border: 1px black solid;
 `;
 
+const Footer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 export const AddItem: React.FC = () => {
   const navigate = useNavigate();
 
@@ -22,6 +28,14 @@ export const AddItem: React.FC = () => {
           Close
         </Button>
       </Header>
+      <Footer>
+        <Button
+          variant='contained'
+          onClick={() => alert('Creating new item to list')}
+        >
+          Create Item
+        </Button>
+      </Footer>
     </Container>
   );
 };
