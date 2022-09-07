@@ -1,5 +1,17 @@
 import '@testing-library/react';
+import { render, screen } from '@testing-library/react';
+import { AddItem } from './AddItem';
 
-test.todo('full app rendering and check route to home screen');
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'),
+  useNavigate: () => jest.fn(),
+}));
 
-test.todo('full app rendering and verify input rendered');
+test.todo('Rendering return button and check route to home screen');
+test.todo('Rendering create button');
+
+test('renders item input', () => {
+  render(<AddItem />);
+  const inputElement = screen.getByLabelText(/Add Item/);
+  expect(inputElement).toBeInTheDocument();
+});
