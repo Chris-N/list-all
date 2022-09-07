@@ -1,7 +1,9 @@
 import * as React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { Button, Container } from '@mui/material';
+import { Autocomplete, Button, Container, TextField } from '@mui/material';
+
+import data from 'data/food.json';
 
 const Header = styled.div`
   display: flex;
@@ -17,6 +19,10 @@ const Footer = styled.div`
   align-items: center;
 `;
 
+const StyledAutoComplete = styled(Autocomplete)`
+  margin: 10% 0;
+`;
+
 export const AddItem: React.FC = () => {
   const navigate = useNavigate();
 
@@ -28,6 +34,22 @@ export const AddItem: React.FC = () => {
           Close
         </Button>
       </Header>
+      <StyledAutoComplete
+        id='input-add-item'
+        disableClearable
+        freeSolo
+        options={data.food.map((option) => option.name)}
+        renderInput={(params) => (
+          <TextField
+            {...params}
+            label='Add Item'
+            InputProps={{
+              ...params.InputProps,
+              type: 'search',
+            }}
+          />
+        )}
+      />
       <Footer>
         <Button
           variant='contained'
