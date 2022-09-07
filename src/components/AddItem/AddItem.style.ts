@@ -1,5 +1,5 @@
-import { List } from '@mui/material';
 import styled from 'styled-components';
+import { Autocomplete } from '@mui/material';
 
 export const Header = styled.div`
   display: flex;
@@ -15,4 +15,6 @@ export const Footer = styled.div`
   align-items: center;
 `;
 
-export const MyList = styled(List)``;
+export const StyledAutoComplete = styled(Autocomplete)`
+  margin: 10% 0;
+`;

@@ -1,27 +1,8 @@
 import * as React from 'react';
 import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
-import { Autocomplete, Button, Container, TextField } from '@mui/material';
-
+import { Button, Container, TextField } from '@mui/material';
 import data from 'data/food.json';
-
-const Header = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-left: 50%;
-  border: 1px black solid;
-`;
-
-const Footer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-const StyledAutoComplete = styled(Autocomplete)`
-  margin: 10% 0;
-`;
+import { Footer, Header, StyledAutoComplete } from './AddItem.style';
 
 export const AddItem: React.FC = () => {
   const navigate = useNavigate();

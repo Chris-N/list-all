@@ -1,37 +1,19 @@
 import * as React from 'react';
 import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
 import {
   Button,
   Checkbox,
   Container,
   IconButton,
-  List,
   ListItemButton,
   ListItemIcon,
   ListItemText,
 } from '@mui/material';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-
+import { Item } from 'types';
 import importedItems from 'data/items.json';
 
-import { Item } from 'types';
-
-const Header = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-left: 50%;
-  border: 1px black solid;
-`;
-
-const Footer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-const MyList = styled(List)``;
+import { Footer, Header, MyList } from './Home.style';
 
 export const Home: React.FC = () => {
   const [items, setItems] = React.useState<Item[]>(importedItems.data);
