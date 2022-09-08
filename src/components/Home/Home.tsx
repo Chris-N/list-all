@@ -11,12 +11,13 @@ import {
 } from '@mui/material';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { Item } from 'types';
-import importedItems from 'data/items.json';
 
 import { Footer, Header, MyList } from './Home.style';
 
-export const Home: React.FC = () => {
-  const [items, setItems] = React.useState<Item[]>(importedItems.data);
+export const Home: React.FC<{
+  items: Item[];
+  setItems: React.Dispatch<React.SetStateAction<Item[]>>;
+}> = ({ items, setItems }) => {
   const navigate = useNavigate();
 
   const handleToggle = (index: number) => () => {
@@ -39,10 +40,7 @@ export const Home: React.FC = () => {
       <MyList>
         {items.map((value, index) => {
           return (
-            <ListItemButton
-              key={`listitem-${value.name}-${index}`}
-              onClick={handleToggle(index)}
-            >
+            <ListItemButton key={`listitem-${value.name}-${index}`} onClick={handleToggle(index)}>
               <ListItemIcon>
                 <Checkbox edge='start' checked={value.status} disableRipple />
               </ListItemIcon>
