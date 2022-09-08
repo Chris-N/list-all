@@ -2,9 +2,14 @@ import * as React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button, Container, TextField } from '@mui/material';
 import data from 'data/food.json';
+import { Item } from 'types';
+
 import { Footer, Header, StyledAutoComplete } from './AddItem.style';
 
-export const AddItem: React.FC = () => {
+export const AddItem: React.FC<{
+  items: Item[];
+  setItems: React.Dispatch<React.SetStateAction<Item[]>>;
+}> = () => {
   const navigate = useNavigate();
 
   return (
@@ -32,10 +37,7 @@ export const AddItem: React.FC = () => {
         )}
       />
       <Footer>
-        <Button
-          variant='contained'
-          onClick={() => alert('Creating new item to list')}
-        >
+        <Button variant='contained' onClick={() => alert('Creating new item to list')}>
           Create Item
         </Button>
       </Footer>
