@@ -9,7 +9,8 @@ import { Footer, Header, StyledAutoComplete } from './AddItem.style';
 export const AddItem: React.FC<{
   items: Item[];
   setItems: React.Dispatch<React.SetStateAction<Item[]>>;
-}> = () => {
+}> = ({ items, setItems }) => {
+  const newItem: Item = { name: '', category: 'Test', status: false };
   const navigate = useNavigate();
 
   return (
@@ -33,11 +34,24 @@ export const AddItem: React.FC<{
               ...params.InputProps,
               type: 'search',
             }}
+            onBlur={(e) => {
+              if (e.target.value !== '') {
+                newItem.name = e.target.value;
+              }
+            }}
           />
         )}
       />
       <Footer>
-        <Button variant='contained' onClick={() => alert('Creating new item to list')}>
+        <Button
+          variant='contained'
+          onClick={() => {
+            // TODO: Notify user with toast new item added, remove log
+            console.log('Creating new item to list');
+            items.push(newItem);
+            setItems([...items]);
+          }}
+        >
           Create Item
         </Button>
       </Footer>

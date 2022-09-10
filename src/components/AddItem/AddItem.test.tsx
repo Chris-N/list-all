@@ -12,11 +12,13 @@ jest.mock('react-router-dom', () => ({
   useNavigate: () => mockUseNavigate,
 }));
 
-test.todo('Rendering return button and check route to home screen');
-test.todo('Rendering create button');
+test.todo('rendering return button and check route to home screen');
+test.todo('rendering create button');
 
 test('renders item input', () => {
   render(<AddItem items={mockItems.data} setItems={mockSetState} />);
   const inputElement = screen.getByLabelText(/Add Item/);
   expect(inputElement).toBeInTheDocument();
 });
+
+test.todo('new item has been created');
