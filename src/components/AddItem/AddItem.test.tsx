@@ -13,7 +13,11 @@ jest.mock('react-router-dom', () => ({
 }));
 
 test.todo('rendering return button and check route to home screen');
-test.todo('rendering create button');
+test('rendering create button', () => {
+  render(<AddItem items={mockItems.data} setItems={mockSetState} />);
+  const buttonElement = screen.getByText(/Create Item/);
+  expect(buttonElement).toBeInTheDocument();
+});
 
 test('renders item input', () => {
   render(<AddItem items={mockItems.data} setItems={mockSetState} />);
