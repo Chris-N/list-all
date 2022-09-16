@@ -1,0 +1,19 @@
+{
+  "category": [
+    { "name": "Produce" },
+    { "name": "Dairy" },
+    { "name": "Meat & Seafood" },
+    { "name": "Household" },
+    { "name": "Bakery" },
+    { "name": "Baking & Cooking" },
+    { "name": "Frozen" },
+    { "name": "Pasta & Noodles" },
+    { "name": "Snacks" },
+    { "name": "Breakfast & Cereal" },
+    { "name": "Beverages" },
+    { "name": "Deli" },
+    { "name": "Beans & Grains" },
+    { "name": "Condiments" },
+    { "name": "Others" }
+  ]
+}
