@@ -8,10 +8,12 @@ import {
   ListItemButton,
   ListItemIcon,
   ListItemText,
+  ListSubheader,
 } from '@mui/material';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { Item } from 'types';
 
+import sectionData from 'data/category.json';
 import { Footer, Header, MyList } from './Home.style';
 
 export const Home: React.FC<{
@@ -29,6 +31,20 @@ export const Home: React.FC<{
     setItems([...items]);
   };
 
+  const filterCategory = (): { name: string }[] => {
+    const temp: { name: string }[] = [];
+    sectionData.category.forEach((title) => {
+      if (items.find((item) => item.category === title.name)) {
+        temp.push(title);
+      }
+    });
+
+    console.log('TEMP? = ' + JSON.stringify(temp));
+    return temp;
+  };
+
+  filterCategory();
+
   return (
     <Container id='app'>
       <Header>
@@ -38,16 +54,33 @@ export const Home: React.FC<{
         </IconButton>
       </Header>
       <MyList>
-        {items.map((value, index) => {
-          return (
-            <ListItemButton key={`listitem-${value.name}-${index}`} onClick={handleToggle(index)}>
-              <ListItemIcon>
-                <Checkbox edge='start' checked={value.status} disableRipple />
-              </ListItemIcon>
-              <ListItemText primary={value.name} secondary={value.category} />
-            </ListItemButton>
-          );
-        })}
+        {/* 
+WIP: displaying filter category on list
+
+Section loop
+    item loop
+      render when section.category === item.category
+      - sub header & items
+
+*/}
+        {sectionData.category.map((subheader) => (
+          <li>
+            <ul>
+              <ListSubheader>{subheader.name}</ListSubheader>
+              {items.map((value, index) => (
+                <ListItemButton
+                  key={`listitem-${value.name}-${index}`}
+                  onClick={handleToggle(index)}
+                >
+                  <ListItemIcon>
+                    <Checkbox edge='start' checked={value.status} disableRipple />
+                  </ListItemIcon>
+                  <ListItemText primary={value.name} secondary={value.category} />
+                </ListItemButton>
+              ))}
+            </ul>
+          </li>
+        ))}
       </MyList>
       <Footer>
         <Button variant='contained' onClick={() => navigate('/add')}>
