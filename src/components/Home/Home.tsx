@@ -39,11 +39,10 @@ export const Home: React.FC<{
       }
     });
 
-    console.log('TEMP? = ' + JSON.stringify(temp));
     return temp;
   };
 
-  filterCategory();
+  const filteredCategory = filterCategory();
 
   return (
     <Container id='app'>
@@ -54,30 +53,23 @@ export const Home: React.FC<{
         </IconButton>
       </Header>
       <MyList>
-        {/* 
-WIP: displaying filter category on list
-
-Section loop
-    item loop
-      render when section.category === item.category
-      - sub header & items
-
-*/}
-        {sectionData.category.map((subheader) => (
-          <li>
+        {filteredCategory.map((subheader) => (
+          <li key={`category-${subheader.name}`}>
             <ul>
               <ListSubheader>{subheader.name}</ListSubheader>
-              {items.map((value, index) => (
-                <ListItemButton
-                  key={`listitem-${value.name}-${index}`}
-                  onClick={handleToggle(index)}
-                >
-                  <ListItemIcon>
-                    <Checkbox edge='start' checked={value.status} disableRipple />
-                  </ListItemIcon>
-                  <ListItemText primary={value.name} secondary={value.category} />
-                </ListItemButton>
-              ))}
+              {items.map((value, index) =>
+                value.category !== subheader.name ? null : (
+                  <ListItemButton
+                    key={`listitem-${value.name}-${index}`}
+                    onClick={handleToggle(index)}
+                  >
+                    <ListItemIcon>
+                      <Checkbox edge='start' checked={value.status} disableRipple />
+                    </ListItemIcon>
+                    <ListItemText primary={value.name} secondary={value.category} />
+                  </ListItemButton>
+                )
+              )}
             </ul>
           </li>
         ))}
