@@ -32,14 +32,14 @@ export const Home: React.FC<{
   };
 
   const filterCategory = (): { name: string }[] => {
-    const temp: { name: string }[] = [];
+    const filteredData: { name: string }[] = [];
     sectionData.category.forEach((title) => {
       if (items.find((item) => item.category === title.name)) {
-        temp.push(title);
+        filteredData.push(title);
       }
     });
 
-    return temp;
+    return filteredData;
   };
 
   const filteredCategory = filterCategory();
