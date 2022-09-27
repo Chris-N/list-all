@@ -4,3 +4,8 @@ export interface Item {
   status: boolean;
   createDatetime?: Date;
 }
+
+export interface DisplayItem {
+  value: string;
+  index: number;
+}
