@@ -6,6 +6,11 @@ export interface Item {
 }
 
 export interface DisplayItem {
-  value: string;
+  value: {
+    name: string;
+    status: boolean;
+    category: string;
+  };
   index: number;
+  handleToggle: () => void;
 }
