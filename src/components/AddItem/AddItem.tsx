@@ -15,6 +15,12 @@ export const AddItem: React.FC<{
   const newItem: Item = { name: '', category: 'Test', status: false };
   const navigate = useNavigate();
 
+  const onCreateItem = () => {
+    setOpen(true);
+    items.push(newItem);
+    setItems([...items]);
+  };
+
   const handleClose = (event: React.SyntheticEvent | Event, reason?: string) => {
     if (reason === 'clickaway') {
       return;
@@ -53,17 +59,7 @@ export const AddItem: React.FC<{
         )}
       />
       <Footer>
-        <Button
-          variant='contained'
-          onClick={() => {
-            // TODO: Notify user with toast new item added, remove log
-            setOpen(true);
-
-            console.log('Creating new item to list');
-            items.push(newItem);
-            setItems([...items]);
-          }}
-        >
+        <Button variant='contained' onClick={onCreateItem}>
           Create Item
         </Button>
       </Footer>
