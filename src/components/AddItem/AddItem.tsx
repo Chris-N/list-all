@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Button, Container, TextField } from '@mui/material';
+import { Alert, Button, Container, Snackbar, TextField } from '@mui/material';
 import data from 'data/food.json';
 import { Item } from 'types';
 
@@ -10,8 +10,18 @@ export const AddItem: React.FC<{
   items: Item[];
   setItems: React.Dispatch<React.SetStateAction<Item[]>>;
 }> = ({ items, setItems }) => {
+  const [open, setOpen] = React.useState(false);
+
   const newItem: Item = { name: '', category: 'Test', status: false };
   const navigate = useNavigate();
+
+  const handleClose = (event: React.SyntheticEvent | Event, reason?: string) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
 
   return (
     <Container id='add-item'>
@@ -47,6 +57,8 @@ export const AddItem: React.FC<{
           variant='contained'
           onClick={() => {
             // TODO: Notify user with toast new item added, remove log
+            setOpen(true);
+
             console.log('Creating new item to list');
             items.push(newItem);
             setItems([...items]);
@@ -55,6 +67,9 @@ export const AddItem: React.FC<{
           Create Item
         </Button>
       </Footer>
+      <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
+        <Alert severity='success'>New item added</Alert>
+      </Snackbar>
     </Container>
   );
 };
