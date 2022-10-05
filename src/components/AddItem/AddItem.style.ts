@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Autocomplete } from '@mui/material';
+import { Autocomplete, Button, FormControl } from '@mui/material';
 
 export const Header = styled.div`
   display: flex;
@@ -16,5 +16,13 @@ export const Footer = styled.div`
 `;
 
 export const StyledAutoComplete = styled(Autocomplete)`
+  margin: 10% 0;
+`;
+
+export const StyledFormControl = styled(FormControl)`
+  margin: 10% 0;
+`;
+
+export const StyledButton = styled(Button)`
   margin: 10% 0;
 `;

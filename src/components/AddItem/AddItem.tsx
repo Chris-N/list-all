@@ -1,10 +1,26 @@
 import * as React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Alert, Button, Container, Snackbar, TextField } from '@mui/material';
+import {
+  Alert,
+  Button,
+  Container,
+  InputLabel,
+  MenuItem,
+  Select,
+  Snackbar,
+  TextField,
+} from '@mui/material';
 import data from 'data/food.json';
+import categoryData from 'data/category.json';
 import { Item } from 'types';
 
-import { Footer, Header, StyledAutoComplete } from './AddItem.style';
+import {
+  Footer,
+  Header,
+  StyledAutoComplete,
+  StyledButton,
+  StyledFormControl,
+} from './AddItem.style';
 
 export const AddItem: React.FC<{
   items: Item[];
@@ -58,10 +74,23 @@ export const AddItem: React.FC<{
           />
         )}
       />
+      <StyledFormControl fullWidth>
+        <InputLabel id='category-label'>Category</InputLabel>
+        <Select
+          labelId='category-label'
+          id='category-select'
+          label='Category'
+          value={categoryData.category[0].name}
+          onChange={() => alert('Change value')}
+        >
+          <MenuItem>Menu1</MenuItem>
+          <MenuItem>Menu2</MenuItem>
+        </Select>
+      </StyledFormControl>
       <Footer>
-        <Button variant='contained' onClick={onCreateItem}>
+        <StyledButton variant='contained' onClick={onCreateItem}>
           Create Item
-        </Button>
+        </StyledButton>
       </Footer>
       <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
         <Alert severity='success'>New item added</Alert>
