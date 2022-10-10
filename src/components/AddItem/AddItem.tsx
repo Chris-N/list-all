@@ -7,6 +7,7 @@ import {
   InputLabel,
   MenuItem,
   Select,
+  SelectChangeEvent,
   Snackbar,
   TextField,
 } from '@mui/material';
@@ -27,6 +28,11 @@ export const AddItem: React.FC<{
   setItems: React.Dispatch<React.SetStateAction<Item[]>>;
 }> = ({ items, setItems }) => {
   const [open, setOpen] = React.useState(false);
+  const [category, setCategory] = React.useState('');
+
+  const handleChange = (event: SelectChangeEvent) => {
+    setCategory(event.target.value);
+  };
 
   const newItem: Item = { name: '', category: 'Test', status: false };
   const navigate = useNavigate();
@@ -37,7 +43,10 @@ export const AddItem: React.FC<{
     setItems([...items]);
   };
 
-  const handleClose = (event: React.SyntheticEvent | Event, reason?: string) => {
+  const handleClose = (
+    event: React.SyntheticEvent | Event,
+    reason?: string
+  ) => {
     if (reason === 'clickaway') {
       return;
     }
@@ -80,11 +89,11 @@ export const AddItem: React.FC<{
           labelId='category-label'
           id='category-select'
           label='Category'
-          value={categoryData.category[0].name}
-          onChange={() => alert('Change value')}
+          value={category}
+          onChange={handleChange}
         >
-          <MenuItem>Menu1</MenuItem>
-          <MenuItem>Menu2</MenuItem>
+          <MenuItem value={'menu1'}>Menu1</MenuItem>
+          <MenuItem value={'menu2'}>Menu2</MenuItem>
         </Select>
       </StyledFormControl>
       <Footer>
