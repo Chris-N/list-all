@@ -4,6 +4,7 @@ import {
   Alert,
   Button,
   Container,
+  createFilterOptions,
   InputLabel,
   MenuItem,
   Select,
@@ -23,11 +24,14 @@ import {
   StyledFormControl,
 } from './AddItem.style';
 
+const filter = createFilterOptions<string>();
+
 export const AddItem: React.FC<{
   items: Item[];
   setItems: React.Dispatch<React.SetStateAction<Item[]>>;
 }> = ({ items, setItems }) => {
   const [open, setOpen] = React.useState(false);
+  const [itemName, setItemName] = React.useState('');
   const [category, setCategory] = React.useState('Test');
 
   const handleChange = (event: SelectChangeEvent) => {
@@ -63,9 +67,14 @@ export const AddItem: React.FC<{
           Close
         </Button>
       </Header>
+      {/* https://mui.com/material-ui/react-autocomplete/#creatable */}
       <StyledAutoComplete
         id='input-add-item'
+        value={itemName}
+        selectOnFocus
+        clearOnBlur
         disableClearable
+        handleHomeEndKeys
         freeSolo
         options={data.food.map((option) => option.name)}
         renderInput={(params) => (
