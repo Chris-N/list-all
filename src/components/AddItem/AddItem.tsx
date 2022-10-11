@@ -28,7 +28,7 @@ export const AddItem: React.FC<{
   setItems: React.Dispatch<React.SetStateAction<Item[]>>;
 }> = ({ items, setItems }) => {
   const [open, setOpen] = React.useState(false);
-  const [category, setCategory] = React.useState('');
+  const [category, setCategory] = React.useState('Test');
 
   const handleChange = (event: SelectChangeEvent) => {
     setCategory(event.target.value);
@@ -39,6 +39,7 @@ export const AddItem: React.FC<{
 
   const onCreateItem = () => {
     setOpen(true);
+    newItem.category = category;
     items.push(newItem);
     setItems([...items]);
   };
@@ -92,8 +93,8 @@ export const AddItem: React.FC<{
           value={category}
           onChange={handleChange}
         >
-          <MenuItem value={'menu1'}>Menu1</MenuItem>
-          <MenuItem value={'menu2'}>Menu2</MenuItem>
+          <MenuItem value={'Menu1'}>Menu1</MenuItem>
+          <MenuItem value={'Menu2'}>Menu2</MenuItem>
         </Select>
       </StyledFormControl>
       <Footer>

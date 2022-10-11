@@ -36,6 +36,8 @@ export const Home: React.FC<{
 
   const filteredCategory = filterCategory();
 
+  console.log('ITEMS: ' + JSON.stringify(items));
+
   return (
     <Container id='app'>
       <Header>
@@ -51,7 +53,11 @@ export const Home: React.FC<{
               <ListSubheader>{subheader.name}</ListSubheader>
               {items.map((value, index) =>
                 value.category !== subheader.name ? null : (
-                  <ListItem value={value} index={index} handleToggle={handleToggle(index)} />
+                  <ListItem
+                    value={value}
+                    index={index}
+                    handleToggle={handleToggle(index)}
+                  />
                 )
               )}
             </ul>
