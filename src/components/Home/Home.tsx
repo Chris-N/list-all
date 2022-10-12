@@ -54,6 +54,7 @@ export const Home: React.FC<{
               {items.map((value, index) =>
                 value.category !== subheader.name ? null : (
                   <ListItem
+                    key={`listitem-${index}`}
                     value={value}
                     index={index}
                     handleToggle={handleToggle(index)}
