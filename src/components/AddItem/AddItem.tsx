@@ -4,7 +4,6 @@ import {
   Alert,
   Button,
   Container,
-  createFilterOptions,
   InputLabel,
   MenuItem,
   Select,
@@ -24,8 +23,6 @@ import {
   StyledFormControl,
 } from './AddItem.style';
 
-const filter = createFilterOptions<string>();
-
 export const AddItem: React.FC<{
   items: Item[];
   setItems: React.Dispatch<React.SetStateAction<Item[]>>;
@@ -34,7 +31,7 @@ export const AddItem: React.FC<{
   const [itemName, setItemName] = React.useState('');
   const [category, setCategory] = React.useState('Test');
 
-  const handleChange = (event: SelectChangeEvent) => {
+  const handleCategoryChange = (event: SelectChangeEvent) => {
     setCategory(event.target.value);
   };
 
@@ -43,15 +40,13 @@ export const AddItem: React.FC<{
 
   const onCreateItem = () => {
     setOpen(true);
+    newItem.name = itemName;
     newItem.category = category;
     items.push(newItem);
     setItems([...items]);
   };
 
-  const handleClose = (
-    event: React.SyntheticEvent | Event,
-    reason?: string
-  ) => {
+  const handleClose = (event: React.SyntheticEvent | Event, reason?: string) => {
     if (reason === 'clickaway') {
       return;
     }
@@ -67,14 +62,15 @@ export const AddItem: React.FC<{
           Close
         </Button>
       </Header>
-      {/* https://mui.com/material-ui/react-autocomplete/#creatable */}
       <StyledAutoComplete
         id='input-add-item'
-        value={itemName}
-        selectOnFocus
-        clearOnBlur
         disableClearable
-        handleHomeEndKeys
+        onInputChange={(event, value) => {
+          setItemName(value as string);
+        }}
+        onChange={(event, value) => {
+          setItemName(value as string);
+        }}
         freeSolo
         options={data.food.map((option) => option.name)}
         renderInput={(params) => (
@@ -100,7 +96,7 @@ export const AddItem: React.FC<{
           id='category-select'
           label='Category'
           value={category}
-          onChange={handleChange}
+          onChange={handleCategoryChange}
         >
           <MenuItem value={'Menu1'}>Menu1</MenuItem>
           <MenuItem value={'Menu2'}>Menu2</MenuItem>
