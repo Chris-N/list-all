@@ -98,8 +98,11 @@ export const AddItem: React.FC<{
           value={category}
           onChange={handleCategoryChange}
         >
-          <MenuItem value={'Menu1'}>Menu1</MenuItem>
-          <MenuItem value={'Menu2'}>Menu2</MenuItem>
+          {categoryData.category.map((menuItem) => (
+            <MenuItem key={menuItem.name} value={menuItem.name}>
+              {menuItem.name}
+            </MenuItem>
+          ))}
         </Select>
       </StyledFormControl>
       <Footer>

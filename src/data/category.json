@@ -1,5 +1,6 @@
 {
   "category": [
+    { "name": "Test" },
     { "name": "Produce" },
     { "name": "Dairy" },
     { "name": "Meat & Seafood" },
@@ -14,9 +15,6 @@
     { "name": "Deli" },
     { "name": "Beans & Grains" },
     { "name": "Condiments" },
-    { "name": "Others" },
-    { "name": "Menu1" },
-    { "name": "Menu2" },
-    { "name": "Test" }
+    { "name": "Others" }
   ]
 }
