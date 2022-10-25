@@ -28,6 +28,7 @@ export const AddItem: React.FC<{
   setItems: React.Dispatch<React.SetStateAction<Item[]>>;
 }> = ({ items, setItems }) => {
   const [open, setOpen] = React.useState(false);
+  const [openError, setOpenError] = React.useState(false);
   const [itemName, setItemName] = React.useState('');
   const [category, setCategory] = React.useState('Test');
 
@@ -39,6 +40,11 @@ export const AddItem: React.FC<{
   const navigate = useNavigate();
 
   const onCreateItem = () => {
+    if (itemName === '') {
+      setOpenError(true);
+      return;
+    }
+
     setOpen(true);
     newItem.name = itemName;
     newItem.category = category;
@@ -52,6 +58,14 @@ export const AddItem: React.FC<{
     }
 
     setOpen(false);
+  };
+
+  const handleCloseError = (event: React.SyntheticEvent | Event, reason?: string) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpenError(false);
   };
 
   return (
@@ -112,6 +126,9 @@ export const AddItem: React.FC<{
       </Footer>
       <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
         <Alert severity='success'>New item added</Alert>
+      </Snackbar>
+      <Snackbar open={openError} autoHideDuration={3000} onClose={handleCloseError}>
+        <Alert severity='error'>Item name missing</Alert>
       </Snackbar>
     </Container>
   );
