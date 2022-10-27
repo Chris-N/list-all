@@ -50,6 +50,7 @@ export const AddItem: React.FC<{
     newItem.category = category;
     items.push(newItem);
     setItems([...items]);
+    setItemName('');
   };
 
   const handleClose = (event: React.SyntheticEvent | Event, reason?: string) => {
@@ -77,8 +78,8 @@ export const AddItem: React.FC<{
         </Button>
       </Header>
       <StyledAutoComplete
+        value={itemName}
         id='input-add-item'
-        disableClearable
         onInputChange={(event, value) => {
           setItemName(value as string);
         }}
