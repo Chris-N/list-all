@@ -50,6 +50,10 @@ export const AddItem: React.FC<{
     newItem.category = category;
     items.push(newItem);
     setItems([...items]);
+
+    // Will add new item to a master list item
+    // Then give user exact match in input preview to select from
+    data.food.push(newItem);
     setItemName('');
   };
 
