@@ -35,16 +35,22 @@ export const Home: React.FC<{
   };
 
   const itemLister = (category: string) => {
-    return items.map((value, index) =>
-      value.category !== category ? null : (
-        <ListItem
-          key={`listitem-${index}`}
-          value={value}
-          index={index}
-          handleToggle={handleToggle(index)}
-        />
-      )
-    );
+    return items.map((value, index) => {
+      if (value.status) return null;
+
+      if (value.category === category) {
+        return (
+          <ListItem
+            key={`listitem-${index}`}
+            value={value}
+            index={index}
+            handleToggle={handleToggle(index)}
+          />
+        );
+      }
+
+      return null;
+    });
   };
 
   const itemCompleted = () => {
