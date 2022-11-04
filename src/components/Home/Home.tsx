@@ -34,6 +34,32 @@ export const Home: React.FC<{
     return filteredData;
   };
 
+  const itemLister = (category: string) => {
+    return items.map((value, index) =>
+      value.category !== category ? null : (
+        <ListItem
+          key={`listitem-${index}`}
+          value={value}
+          index={index}
+          handleToggle={handleToggle(index)}
+        />
+      )
+    );
+  };
+
+  const itemCompleted = () => {
+    return items.map((value, index) =>
+      value.status ? (
+        <ListItem
+          key={`listitem-${index}`}
+          value={value}
+          index={index}
+          handleToggle={handleToggle(index)}
+        />
+      ) : null
+    );
+  };
+
   const filteredCategory = filterCategory();
 
   console.log('ITEMS: ' + JSON.stringify(items));
@@ -48,22 +74,13 @@ export const Home: React.FC<{
       </Header>
       <MyList>
         {filteredCategory.map((subheader) => (
-          <li key={`category-${subheader.name}`}>
-            <ul>
-              <ListSubheader>{subheader.name}</ListSubheader>
-              {items.map((value, index) =>
-                value.category !== subheader.name ? null : (
-                  <ListItem
-                    key={`listitem-${index}`}
-                    value={value}
-                    index={index}
-                    handleToggle={handleToggle(index)}
-                  />
-                )
-              )}
-            </ul>
-          </li>
+          <div>
+            <ListSubheader>{subheader.name}</ListSubheader>
+            {itemLister(subheader.name)}
+          </div>
         ))}
+        {items.some((item) => item.status) ? <ListSubheader>{'Completed'}</ListSubheader> : null}
+        {itemCompleted()}
       </MyList>
       <Footer>
         <Button variant='contained' onClick={() => navigate('/add')}>
