@@ -19,7 +19,7 @@ export const Home: React.FC<{
 
     if (!changeItem) return;
 
-    items[index].status = !changeItem.status;
+    items[index].isComplete = !changeItem.isComplete;
     setItems([...items]);
   };
 
@@ -36,7 +36,7 @@ export const Home: React.FC<{
 
   const itemLister = (category: string) => {
     return items.map((value, index) => {
-      if (value.status) return null;
+      if (value.isComplete) return null;
 
       if (value.category === category) {
         return (
@@ -55,7 +55,7 @@ export const Home: React.FC<{
 
   const itemCompleted = () => {
     return items.map((value, index) =>
-      value.status ? (
+      value.isComplete ? (
         <ListItem
           key={`listitem-${index}`}
           value={value}
@@ -85,7 +85,9 @@ export const Home: React.FC<{
             {itemLister(subheader.name)}
           </div>
         ))}
-        {items.some((item) => item.status) ? <ListSubheader>{'Completed'}</ListSubheader> : null}
+        {items.some((item) => item.isComplete) ? (
+          <ListSubheader>{'Completed'}</ListSubheader>
+        ) : null}
         {itemCompleted()}
       </MyList>
       <Footer>

@@ -1,14 +1,14 @@
 export interface Item {
   name: string;
   category: string;
-  status: boolean;
+  isComplete: boolean;
   createDatetime?: Date;
 }
 
 export interface DisplayItem {
   value: {
     name: string;
-    status: boolean;
+    isComplete: boolean;
     category: string;
   };
   index: number;
