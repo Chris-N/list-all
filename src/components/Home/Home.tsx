@@ -66,6 +66,13 @@ export const Home: React.FC<{
     );
   };
 
+  const displaySubheader = (subheader: string) =>
+    items
+      .filter((item) => item.category === subheader)
+      .every((item) => item.isComplete) ? null : (
+      <ListSubheader>{subheader}</ListSubheader>
+    );
+
   const filteredCategory = filterCategory();
 
   console.log('ITEMS: ' + JSON.stringify(items));
@@ -81,7 +88,7 @@ export const Home: React.FC<{
       <MyList>
         {filteredCategory.map((subheader) => (
           <div>
-            <ListSubheader>{subheader.name}</ListSubheader>
+            {displaySubheader(subheader.name)}
             {itemLister(subheader.name)}
           </div>
         ))}
