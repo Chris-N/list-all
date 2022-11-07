@@ -4,16 +4,16 @@ export const Data: Item[] = [
   {
     name: 'Apples',
     category: 'Produce',
-    status: false,
+    isComplete: false,
   },
   {
     name: 'Bananas',
     category: 'Produce',
-    status: true,
+    isComplete: true,
   },
   {
     name: 'Peaches',
     category: 'Produce',
-    status: false,
+    isComplete: false,
   },
 ];
