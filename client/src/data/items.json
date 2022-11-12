@@ -1,0 +1,8 @@
+{
+  "data": [
+    { "name": "Apples", "category": "Produce", "isComplete": false },
+    { "name": "Bananas", "category": "Produce", "isComplete": true },
+    { "name": "Peaches", "category": "Produce", "isComplete": false },
+    { "name": "Donuts", "category": "Bakery", "isComplete": false }
+  ]
+}
