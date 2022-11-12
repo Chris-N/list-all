@@ -1,8 +1,0 @@
-{
-  "food": [
-    { "name": "Apples", "category": "Produce" },
-    { "name": "Cheese", "category": "Dairy" },
-    { "name": "Bananas", "category": "Produce" },
-    { "name": "Coke", "category": "Beverages" }
-  ]
-}
